@@ -6,6 +6,7 @@ import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
 class CastleController {
+    def geocoderService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
@@ -34,6 +35,8 @@ class CastleController {
             return
         }
 
+        geocoderService.fillInLatLng(castleInstance)
+
         castleInstance.save flush: true
 
         request.withFormat {
@@ -60,6 +63,8 @@ class CastleController {
             respond castleInstance.errors, view: 'edit'
             return
         }
+
+        geocoderService.fillInLatLng(castleInstance)
 
         castleInstance.save flush: true
 

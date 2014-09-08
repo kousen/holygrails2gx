@@ -8,6 +8,12 @@ import spock.lang.*
 @Mock(Castle)
 class CastleControllerSpec extends Specification {
 
+    void setup() {
+        Expando e = new Expando()
+        e.fillInLatLng = { Castle c -> }
+        controller.geocoderService = e
+    }
+
     def populateValidParams(params) {
         assert params != null
         // TODO: Populate valid properties like...
