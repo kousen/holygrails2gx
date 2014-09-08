@@ -13,7 +13,8 @@ class CastleSpec extends Specification {
 
     @Unroll
     void "#name, #city, #state, #lat, #lng is #result"(String name, String city, String state,
-                                                       double lat, double lng) {
+                                                       double lat, double lng,
+                                                       boolean valid, String result) {
         expect:
         new Castle(name: name, city: city, state: state,
                 latitude: lat, longitude: lng).validate() == valid
