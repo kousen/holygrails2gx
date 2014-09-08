@@ -4,6 +4,7 @@
 <html>
 	<head>
 		<meta name="layout" content="main">
+        <gvisualization:apiImport />
 		<g:set var="entityName" value="${message(code: 'castle.label', default: 'Castle')}" />
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>
@@ -20,6 +21,9 @@
 			<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>
+            <gvisualization:map elementId="map" showTip="${true}"
+                        columns="${mapColumns}" data="${mapData}"/>
+            <div id="map" style="width: 100%;"></div>
 			<table>
 			<thead>
 					<tr>
