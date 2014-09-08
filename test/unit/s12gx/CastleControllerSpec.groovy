@@ -11,6 +11,8 @@ class CastleControllerSpec extends Specification {
     void setup() {
         Expando e = new Expando()
         e.fillInLatLng = { Castle c -> }
+        e.headers = { -> }
+        e.data = { -> }
         controller.geocoderService = e
     }
 
