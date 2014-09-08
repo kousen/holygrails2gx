@@ -1,5 +1,8 @@
 package s12gx
 
+import groovy.transform.ToString
+
+@ToString(includeNames = true)
 class Task {
     public static final int MIN_PRIORITY = 1
     public static final int MAX_PRIORITY = 5
@@ -13,6 +16,8 @@ class Task {
     int getDuration() { endDate - startDate + 1 }
 
     static transients = ['duration']
+
+    static belongsTo = [quest:Quest]
 
     static constraints = {
         name blank: false
