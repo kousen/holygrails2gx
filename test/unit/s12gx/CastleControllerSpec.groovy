@@ -9,11 +9,17 @@ import spock.lang.*
 class CastleControllerSpec extends Specification {
 
     void setup() {
-        Expando e = new Expando()
-        e.fillInLatLng = { Castle c -> }
-        e.headers = { -> }
-        e.data = { -> }
-        controller.geocoderService = e
+        def geoMock = mockFor(GeocoderService, true) // stub rather than mock
+        geoMock.demand.fillInLatLng { Castle c -> }
+        geoMock.demand.headers { -> }
+        geoMock.demand.data { -> }
+        controller.geocoderService = geoMock.createMock()
+
+//        Expando e = new Expando()
+//        e.fillInLatLng = { Castle c -> }
+//        e.headers = { -> }
+//        e.data = { -> }
+//        controller.geocoderService = e
     }
 
     def populateValidParams(params) {
